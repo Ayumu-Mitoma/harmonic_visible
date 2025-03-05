@@ -41,11 +41,15 @@ def display_amplitude(data):
     plt.show()
 
 def search_max_index(data):
+    MAX = len(data)-1
     flat_index = np.argmax(data)
     row_index, col_index = np.unravel_index(flat_index, data.shape)
     sec = int(C.SR / C.HOP_LENGTH) * 2
-    max_row_after_1sec = data[row_index+sec, :]
-    
+    if row_index+sec < MAX:
+        max_row_after_1sec = data[row_index+sec, :]
+    else:
+        max_row_after_1sec = data[MAX, :]
+
     return max_row_after_1sec
 
 def display_cqt_value(data):
