@@ -24,6 +24,8 @@ def display_cqt_value(data):
     ax.bar(x, data)
     ax.set_xlabel("Overtone")
     ax.set_ylabel("Amplitude")
+    ax.set_xticks([])
+    ax.set_yticks([])
     st.pyplot(fig)
 
 #UI部分記述
