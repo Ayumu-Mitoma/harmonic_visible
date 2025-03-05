@@ -43,7 +43,7 @@ if option == "今から音を録音する":
         st.session_state["analysis"] = True
     if st.session_state["analysis"] == True:
         noise_wav_io = ap.noise_reducer(data, num = 0.8)
-        tuning = st.slider("チューニングを選択 ※1が規定値", -1, 100, 1)
+        tuning = st.slider("チューニングを選択 ※1が規定値", -1, 1)
         ana = st.button("分析開始")
         if ana == True:
             cqt = ap.create_CQT(noise_wav_io, tuning)
