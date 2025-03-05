@@ -4,11 +4,6 @@ import numpy as np
 import streamlit as st
 
 """
-name = "C1"
-m4a_path = ""
-wav_io = ap.m4a_to_wav(m4a_path)
-noise_wav_io = ap.noise_reducer(wav_io, num = 0.8)
-cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
 row = ap.search_max_index(cqt)
 #row_84 = ap.create_12_data(row)
 row_84 = ap.create_12_data_beta(row)
@@ -32,6 +27,6 @@ file = st.file_uploader("ボタンを押して録音した音声を選んでね"
 if file is not None:
     file_name = file.name.lower()
     if file_name.endswith(".m4a"):
-        st.text(file_name)
-    else:
-        st.text("残念")
+        wav_io = ap.m4a_to_wav(file)
+        noise_wav_io = ap.noise_reducer(wav_io, num = 0.8)
+        cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
