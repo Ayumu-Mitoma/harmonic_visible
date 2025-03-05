@@ -11,15 +11,9 @@ SR = C.SR
 A_path = C.AUDIO_PATH
 S_path = C.SAVE_PATH
 
-
-def m4a_to_wav(file):
-    audio = AudioSegment.from_file(file, format="m4a")
-    wav_io = io.BytesIO()
-    audio.export(wav_io, format="wav")
-    wav_io.seek(0)
-
-    return wav_io
-
+def byte_to_audio(data):
+    y, sr = librosa.load(data, C.SR)
+    return y
 
 def noise_reducer(data_io, num=0.5):
     data,sr = librosa.load(data_io, sr=SR)

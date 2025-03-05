@@ -3,7 +3,7 @@ import audio_processing as ap
 import numpy as np
 import streamlit as st
 from audio_recorder_streamlit import audio_recorder
-
+from io import BytesIO
 """
 
 cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
@@ -26,9 +26,12 @@ if option == "今から音を録音する":
     st.subheader("1. 音を録音しよう")
     st.text("ピアノの近くにスマホを置いて録音してみよう")
     audio_byte = audio_recorder()
-    noise_wav_io = ap.noise_reducer(audio_byte, num = 0.8)
-    cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
-    st.text(cqt.shape)
+    if audio_byte:
+        with BytesIO(audio_byte)as f:
+            data = ap.byte_to_audio(audio_byte)
+        noise_wav_io = ap.noise_reducer(data, num = 0.8)
+        cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
+        st.text(cqt.shape)
 
 if option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
