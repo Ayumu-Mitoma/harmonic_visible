@@ -28,8 +28,10 @@ st.subheader("2. 録音した音声を渡してね")
 st.text("ボタンを押して録音した音声を選んでね")
 
 file = st.file_uploader("ボタンを押して録音した音声を選んでね")
-file_name = file.name.lower()
-if file.endswitch(".m4a"):
-    st.text(file.name)
-else:
-    st.text("残念")
+
+if file is not None:
+    file_name = file.name.lower()
+    if file.endswitch(".m4a"):
+        st.text(file.name)
+    else:
+        st.text("残念")
