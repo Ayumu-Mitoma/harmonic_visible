@@ -20,14 +20,12 @@ ap.display_cqt_value(peak)
 st.title("倍音成分を見てみよう！")
 
 st.header("手順通りに進めてみよう")
-st.subheader("1. 音を録音しよう")
-st.text("ピアノの近くにスマホを置いて録音してみよう")
+if st.button("今から音を録音する場合"):
+    st.subheader("1. 音を録音しよう")
+    st.text("ピアノの近くにスマホを置いて録音してみよう")
+    audio_byte = audio_recorder()
 
-st.subheader("2. 録音した音声を渡してね")
-st.text("ボタンを押して録音した音声を選んでね")
+if st.button("録音した音を使用する場合"):
+    st.subheader("1. 録音した音声を渡してね")
+    st.text("ボタンを押して録音した音声を選んでね")
 
-audio_byte = audio_recorder()
-if st.button("録音を保存"):
-    with open("recorder.wav", "wb") as f:
-        f.write(audio_byte)
-    st.success("録音が保存できました。")
