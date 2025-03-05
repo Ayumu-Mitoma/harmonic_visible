@@ -1,5 +1,0 @@
-librosa
-noisereduce
-soundfile
-scipy
-numpy
