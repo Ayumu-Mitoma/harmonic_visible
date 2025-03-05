@@ -102,11 +102,12 @@ elif option == "録音した音を選ぶ":
                            format="%0.1f")
         ana = st.button("分析開始")
         if ana == True:
-            cqt = ap.create_CQT(noise_wav_io, tuning)
-            row = ap.search_max_index(cqt)
-            row_84 = ap.create_12_data_beta(row)
-            peak, tone, peak_only = ap.peak_extraction(row_84)
-            st.session_state["result2"] = True
+            with st.spinner("処理中..."):
+                cqt = ap.create_CQT(noise_wav_io, tuning)
+                row = ap.search_max_index(cqt)
+                row_84 = ap.create_12_data_beta(row)
+                peak, tone, peak_only = ap.peak_extraction(row_84)
+                st.session_state["result2"] = True
     if st.session_state["result2"] == True:
         df = pd.DataFrame({
             "音階":tone,
