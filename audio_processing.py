@@ -55,10 +55,7 @@ def display_cqt_value(data):
         for j in range(12):
             tone_all.append(C.tone[j]+str(i+1))
 
-    if len(data) != 84:
-        plt.bar(x, data)
-    else:
-        plt.bar(tone_all, data)
+    plt.bar(x, data)
     plt.show()
 
 def peak_extraction(data):
@@ -85,8 +82,7 @@ def peak_extraction(data):
         if peak[i] != 0:
             tone_peak.append(tone_all[i])
 
-    print(tone_peak)
-    return peak
+    return peak, tone_peak
 
 def create_12_data(data):
     bins = int(C.BINS_PER_OCTAVE / 12)
