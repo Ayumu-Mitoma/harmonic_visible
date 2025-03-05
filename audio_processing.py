@@ -86,7 +86,7 @@ def peak_extraction(data, num=15):
     for i in range(len(data)):
         if peak[i] != 0:
             tone_peak.append(tone_all[i])
-            peak_index.append(i)
+            peak_index.append(peak[i])
 
     return peak, tone_peak, peak_index
 
@@ -104,6 +104,8 @@ def create_12_data_beta(data):
     data_a = np.zeros(len(data))
     for i in range(10000):
         p = np.argmax(data)
+        if p == len(data)-1:
+            p = p - 1
         data_a[p] = data[p]+data[p-1]+data[p+1]
 
         data[p] = 0
