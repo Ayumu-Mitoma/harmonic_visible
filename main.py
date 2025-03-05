@@ -5,6 +5,7 @@ import streamlit as st
 from audio_recorder_streamlit import audio_recorder
 from io import BytesIO
 import time
+import pandas as pd
 
 
 """
@@ -31,6 +32,7 @@ if option == "今から音を録音する":
     st.text("ピアノの近くにスマホを置いて録音してみよう")
    
     st.session_state["analysis"] = False
+    st.session_state["result"] = False
     audio_bytes = audio_recorder(
         energy_threshold=(100.0, -1.0),
         neutral_color="#4169e1",
@@ -55,8 +57,12 @@ if option == "今から音を録音する":
             row = ap.search_max_index(cqt)
             row_84 = ap.create_12_data_beta(row)
             peak, tone = ap.peak_extraction(row_84)
-            
-
+            st.session_state["result"] = True
+    if st.session_state["result"] == True:
+        df = pd.DataFrame({})
+        for i in range(len(peak)):
+            df[tone[i]] = peak[i]
+        st.write(df)
 
 
 elif option == "録音した音を選ぶ":

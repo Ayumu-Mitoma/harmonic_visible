@@ -6,3 +6,4 @@ streamlit
 pydub
 ffmpeg
 audio-recorder-streamlit
+pandas
