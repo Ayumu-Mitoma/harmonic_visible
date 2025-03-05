@@ -61,7 +61,7 @@ if option == "今から音を録音する":
     if st.session_state["result"] == True:
         d = {tone[0]:peak[index[0]]}
         for i in range(1,len(tone)):
-            d[tone[i]] = peak[index[i]]
+            d[tone[i]] = round(peak[index[i]],2)
         st.text(d)
         
 
