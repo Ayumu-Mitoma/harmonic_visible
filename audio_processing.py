@@ -15,8 +15,8 @@ def byte_to_audio(data):
     y, sr = librosa.load(data, sr=C.SR)
     return y
 
-def noise_reducer(data_io, num=0.5):
-    data,sr = librosa.load(data_io, sr=SR)
+def noise_reducer(data, num=0.5):
+    #data,sr = librosa.load(data_io, sr=SR)
     noise_reduce_data = nr.reduce_noise(y=data, y_noise=data, sr=SR, prop_decrease=num)
     
     return noise_reduce_data
