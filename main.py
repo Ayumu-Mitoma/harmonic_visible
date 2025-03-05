@@ -20,9 +20,9 @@ ap.display_cqt_value(peak)
 #UI部分記述
 st.title("倍音成分を見てみよう！")
 
-st.header("手順通りに進めてみよう")
-option = st.radio("下から次の操作を選んでね",
-                  ["今から音を録音する", "録音した音を選ぶ"])
+st.header("サイドバーから操作を選んでね")
+choice = ["今から音を録音する", "録音した音を選ぶ"]
+option = st.sidebar.selectbox("次の操作を選んでね",choice)
 
 
 if option == "今から音を録音する":
@@ -55,11 +55,11 @@ if option == "今から音を録音する":
             row = ap.search_max_index(cqt)
             row_84 = ap.create_12_data_beta(row)
             peak, tone = ap.peak_extraction(row_84)
-            st.text(tone)
+            
 
 
 
-if option == "録音した音を選ぶ":
+elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
     st.text("ボタンを押して録音した音声を選んでね")
     st.text("※wavファイル限定")
