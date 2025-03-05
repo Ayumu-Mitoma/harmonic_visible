@@ -59,10 +59,11 @@ if option == "今から音を録音する":
             peak, tone, index = ap.peak_extraction(row_84)
             st.session_state["result"] = True
     if st.session_state["result"] == True:
-        d = {tone[0]:peak[index[0]]}
+        d = {tone[0]:round(peak[index[0]],2)}
         for i in range(1,len(tone)):
             d[tone[i]] = round(peak[index[i]],2)
-        st.text(d)
+        df = pd.DataFrame(d)
+        st.write(df)
         
 
 elif option == "録音した音を選ぶ":
