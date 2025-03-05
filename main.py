@@ -31,7 +31,7 @@ file = st.file_uploader("ボタンを押して録音した音声を選んでね"
 
 if file is not None:
     file_name = file.name.lower()
-    if file_name.endswitch(".m4a"):
+    if file_name.endswith(".m4a"):
         st.text(file_name)
     else:
         st.text("残念")
