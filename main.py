@@ -18,13 +18,23 @@ ap.display_cqt_value(row_84)
 peak = ap.peak_extraction(row_84)
 ap.display_cqt_value(peak)
 """
-def display_cqt_value(data):
+def display_cqt_value(data, peak_tone):
     fig, ax = plt.subplots()
     x = range(0,len(data))
+    tone_all = []
+    index = []
+    for i in range(C.NUM_OCTAVE):
+        for j in range(12):
+            tone_all.append(C.tone[j]+str(i+1))
+
+    for i in range(len(data)):
+        if data[i] != 0:
+            index.append(i)
     ax.bar(x, data)
     ax.set_xlabel("Overtone")
     ax.set_ylabel("Amplitude")
-    ax.set_xticks([])
+    ax.set_xticks(index)
+    ax.set_xticklabels(peak_tone)
     ax.set_yticks([])
     st.pyplot(fig)
 
@@ -74,7 +84,7 @@ if option == "今から音を録音する":
             "数値":peak_only
         })
         st.dataframe(df.T)
-        display_cqt_value(peak)
+        display_cqt_value(peak, )
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
