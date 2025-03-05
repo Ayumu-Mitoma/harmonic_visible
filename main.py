@@ -1,6 +1,7 @@
 import const as C
 import audio_processing as ap
 import numpy as np
+import streamlit as st
 
 name = "C1"
 audio_path = C.AUDIO_PATH+name+".wav"
@@ -15,3 +16,6 @@ row_84 = ap.create_12_data_beta(row)
 ap.display_cqt_value(row_84)
 peak = ap.peak_extraction(row_84)
 ap.display_cqt_value(peak)
+
+#UI部分記述
+st.title("倍音成分可視化装置")
