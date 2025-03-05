@@ -36,8 +36,8 @@ def display_cqt_value(data, peak_tone):
 
 #UI部分記述
 st.title("倍音成分を見てみよう！")
-
-st.header("サイドバーから操作を選んでね")
+st.text("サイドバーから操作を選んでね")
+st.text("")
 choice = ["今から音を録音する", "録音した音を選ぶ"]
 option = st.sidebar.selectbox("次の操作を選んでね",choice)
 
@@ -85,6 +85,40 @@ if option == "今から音を録音する":
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
     st.text("ボタンを押して録音した音声を選んでね")
-    st.text("※wavファイル限定")
+    st.text("※wav, mp3ファイル限定")
 
+    st.session_state["analysis2"] = False
+    st.session_state["result2"] = False
 
+    file = st.file_uploader("ファイルを選択してね")
+    if file is not None:
+        file_name = file.name.lower()
+        if file_name.endswith(".wav") or file_name.endswith(".mp3"):
+            data = ap.byte_to_audio(file)
+            st.session_state["analysis2"] = True
+        else:
+            st.error("対応しているファイルはwavまたはmp3だけです")
+            st.stop()
+
+    if st.session_state["analysis2"] == True:
+        noise_wav_io = ap.noise_reducer(data, num = 0.8)
+        tuning = st.slider(label="チューニングを選択 ※0が規定値",
+                           min_value=-1.0,
+                           max_value=1.0,
+                           value=0.0,
+                           step=0.1,
+                           format="%0.1f")
+        ana = st.button("分析開始")
+        if ana == True:
+            cqt = ap.create_CQT(noise_wav_io, tuning)
+            row = ap.search_max_index(cqt)
+            row_84 = ap.create_12_data_beta(row)
+            peak, tone, peak_only = ap.peak_extraction(row_84)
+            st.session_state["result2"] = True
+    if st.session_state["result2"] == True:
+        df = pd.DataFrame({
+            "音階":tone,
+            "数値":peak_only
+        })
+        st.dataframe(df.T)
+        display_cqt_value(peak_only, tone)
