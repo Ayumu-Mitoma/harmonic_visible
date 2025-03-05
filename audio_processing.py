@@ -12,7 +12,7 @@ A_path = C.AUDIO_PATH
 S_path = C.SAVE_PATH
 
 def byte_to_audio(data):
-    y, sr = librosa.load(data, C.SR)
+    y, sr = librosa.load(data, sr=C.SR)
     return y
 
 def noise_reducer(data_io, num=0.5):
