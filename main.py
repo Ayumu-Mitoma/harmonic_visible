@@ -5,8 +5,7 @@ import streamlit as st
 from audio_recorder_streamlit import audio_recorder
 
 """
-wav_io = ap.m4a_to_wav(file)
-noise_wav_io = ap.noise_reducer(wav_io, num = 0.8)
+
 cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
 row = ap.search_max_index(cqt)
 #row_84 = ap.create_12_data(row)
@@ -27,8 +26,13 @@ if option == "今から音を録音する":
     st.subheader("1. 音を録音しよう")
     st.text("ピアノの近くにスマホを置いて録音してみよう")
     audio_byte = audio_recorder()
+    noise_wav_io = ap.noise_reducer(audio_byte, num = 0.8)
+    cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
+    st.text(cqt.shape)
 
 if option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
     st.text("ボタンを押して録音した音声を選んでね")
+    st.text("※wavファイル限定")
+
 
