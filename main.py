@@ -31,7 +31,7 @@ if option == "今から音を録音する":
    
     audio_bytes = audio_recorder(
         energy_threshold=(100.0, -1.0),
-        text="ボタンを押して録音"
+        text="ボタンを押して録音",
         icon_size="2x"
     )
     if audio_bytes:
