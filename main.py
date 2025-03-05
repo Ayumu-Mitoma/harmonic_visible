@@ -9,15 +9,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-"""
-cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
-row = ap.search_max_index(cqt)
-#row_84 = ap.create_12_data(row)
-row_84 = ap.create_12_data_beta(row)
-ap.display_cqt_value(row_84)
-peak = ap.peak_extraction(row_84)
-ap.display_cqt_value(peak)
-"""
 def display_cqt_value(data, peak_tone):
     fig, ax = plt.subplots()
     x = range(0,len(data))
