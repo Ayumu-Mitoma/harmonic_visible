@@ -63,7 +63,7 @@ if option == "今から音を録音する":
         for i in range(1,len(tone)):
             d[tone[i]] = round(peak[index[i]],2)
         df = pd.DataFrame(d)
-        st.write(df)
+        st.write(df,index=["倍音"])
         
 
 elif option == "録音した音を選ぶ":
