@@ -19,9 +19,12 @@ peak = ap.peak_extraction(row_84)
 ap.display_cqt_value(peak)
 """
 def display_cqt_value(data):
+    fig, ax = plt.subplots()
     x = range(0,len(data))
-    plt.bar(x, data)
-    st.pyplot()
+    ax.bar(x, data)
+    ax.set_xlabel("Overtone")
+    ax.set_ylabel("Amplitude")
+    st.pyplot(fig)
 
 #UI部分記述
 st.title("倍音成分を見てみよう！")
