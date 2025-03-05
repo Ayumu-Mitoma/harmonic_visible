@@ -56,15 +56,14 @@ if option == "今から音を録音する":
             cqt = ap.create_CQT(noise_wav_io, tuning)
             row = ap.search_max_index(cqt)
             row_84 = ap.create_12_data_beta(row)
-            peak, tone, index = ap.peak_extraction(row_84)
+            peak, tone, peak_only = ap.peak_extraction(row_84)
             st.session_state["result"] = True
     if st.session_state["result"] == True:
-        d = {tone[0]:round(peak[index[0]],2)}
-        for i in range(1,len(tone)):
-            d[tone[i]] = round(peak[index[i]],2)
-        df = pd.DataFrame(d)
-        st.write(df,index=["倍音"])
-        
+        df = pd.DataFrame({
+            "音階":tone,
+            "数値":peak_only
+        })
+        st.dataframe(df)
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
