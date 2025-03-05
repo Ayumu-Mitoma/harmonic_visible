@@ -4,21 +4,31 @@ import noisereduce as nr
 import const as C
 import soundfile as sf
 import matplotlib.pyplot as plt
-from scipy.signal import sawtooth
-from scipy.ndimage import gaussian_filter
+from pydub import AudioSegment
+import io
 
 SR = C.SR
 A_path = C.AUDIO_PATH
 S_path = C.SAVE_PATH
 
-def noise_reducer(file, num=0.5):
-    data,sr = librosa.load(file, sr=SR)
-    noise_reduce_data = nr.reduce_noise(y=data, y_noise=data, sr=SR, prop_decrease=num)
-    sf.write(S_path+"noise_reduce_sample.wav", noise_reduce_data, SR)
 
-def create_CQT(file,tune):
-    data, sr = librosa.load(file, sr=SR)
-    data_norm = librosa.util.normalize(data)
+def m4a_to_wav(file):
+    audio = AudioSegment.from_file(file, format="m4a")
+    wav_io = io.BytesIO()
+    audio.export(wav_io, format="wav")
+    wav_io.seek(0)
+
+    return wav_io
+
+
+def noise_reducer(data_io, num=0.5):
+    data,sr = librosa.load(data_io, sr=SR)
+    noise_reduce_data = nr.reduce_noise(y=data, y_noise=data, sr=SR, prop_decrease=num)
+    
+    return noise_reduce_data
+
+def create_CQT(noise_data,tune):
+    data_norm = librosa.util.normalize(noise_data)
     cqt = librosa.cqt(y=data_norm, sr=SR, 
                       hop_length=C.HOP_LENGTH, 
                       n_bins=C.NUM_OCTAVE*C.BINS_PER_OCTAVE, 
@@ -26,7 +36,6 @@ def create_CQT(file,tune):
                       tuning=tune,
                       filter_scale=2.0, fmin=32.7)
     M = np.abs(cqt).T
-    #M = gaussian_filter(M, sigma=1)
 
     return M
 
