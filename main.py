@@ -60,6 +60,7 @@ if option == "今から音を録音する":
             st.session_state["result"] = True
     if st.session_state["result"] == True:
         df = pd.DataFrame({})
+        st.text(len(tone), len(peak))
         for i in range(len(peak)):
             df[tone[i]] = peak[i]
         st.write(df)

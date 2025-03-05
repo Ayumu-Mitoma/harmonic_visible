@@ -3,7 +3,5 @@ numpy
 noisereduce
 soundfile
 streamlit
-pydub
-ffmpeg
 audio-recorder-streamlit
 pandas
