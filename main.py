@@ -28,7 +28,7 @@ if option == "今から音を録音する":
     audio_byte = audio_recorder()
     if audio_byte:
         with BytesIO(audio_byte)as f:
-            data = ap.byte_to_audio(audio_byte)
+            data = ap.byte_to_audio(f)
         noise_wav_io = ap.noise_reducer(data, num = 0.8)
         cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
         st.text(cqt.shape)
