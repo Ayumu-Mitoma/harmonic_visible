@@ -3,4 +3,6 @@ numpy
 noisereduce
 soundfile
 scipy
-
+streamlit
+pydub
+ffmpeg-python
