@@ -63,7 +63,7 @@ if option == "今から音を録音する":
         st.text(len(tone))
         st.text(len(peak))
         for i in range(len(tone)):
-            df[tone[i]] = peak[index[i]]
+            df[tone[index[i]]] = peak[i]
         st.write(df)
 
 
