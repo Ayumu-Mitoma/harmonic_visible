@@ -44,7 +44,7 @@ if option == "今から音を録音する":
                 data = ap.byte_to_audio(f)
             st.session_state["analysis"] = True
             st.session_state["recording"] = False
-    elif st.session_state["analysis"] == True:
+    if st.session_state["analysis"] == True:
         noise_wav_io = ap.noise_reducer(data, num = 0.8)
         cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
         st.text(cqt.shape)
