@@ -21,11 +21,7 @@ ap.display_cqt_value(peak)
 def display_cqt_value(data, peak_tone):
     fig, ax = plt.subplots()
     x = range(0,len(data))
-    tone_all = []
     index = []
-    for i in range(C.NUM_OCTAVE):
-        for j in range(12):
-            tone_all.append(C.tone[j]+str(i+1))
 
     for i in range(len(data)):
         if data[i] != 0:
@@ -84,7 +80,7 @@ if option == "今から音を録音する":
             "数値":peak_only
         })
         st.dataframe(df.T)
-        display_cqt_value(peak, tone)
+        display_cqt_value(peak_only, tone)
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
