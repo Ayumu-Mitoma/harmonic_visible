@@ -28,7 +28,7 @@ st.subheader("2. 録音した音声を渡してね")
 st.text("ボタンを押して録音した音声を選んでね")
 
 file = st.file_uploader("ボタンを押して録音した音声を選んでね")
-if file.type == "m4a":
+if file.name.endswitch(".m4a"):
     st.text(file.type)
 else:
     exit()
