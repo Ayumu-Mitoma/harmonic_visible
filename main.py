@@ -29,18 +29,23 @@ if option == "今から音を録音する":
     st.subheader("1. 音を録音しよう")
     st.text("ピアノの近くにスマホを置いて録音してみよう")
    
-    audio_bytes = audio_recorder(
-        energy_threshold=(100.0, -1.0),
-        neutral_color="#4169e1",
-        text="ボタンを押して録音",
-        icon_size="2x"
-    )
-    if audio_bytes:
-        with BytesIO(audio_bytes)as f:
-            data = ap.byte_to_audio(f)
-        noise_wav_io = ap.noise_reducer(data, num = 0.8)
-        cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
-        st.text(cqt.shape)
+    st.session_state["recording"] = True
+    if st.session_state["recording"]:
+        audio_bytes = audio_recorder(
+            energy_threshold=(100.0, -1.0),
+            neutral_color="#4169e1",
+            text="ボタンを押して録音",
+            icon_size="2x"
+        )
+        if audio_bytes:
+            with BytesIO(audio_bytes)as f:
+                data = ap.byte_to_audio(f)
+            noise_wav_io = ap.noise_reducer(data, num = 0.8)
+            cqt = ap.create_CQT(noise_wav_io, C.LOW_TUNING)
+            st.session_state["recording"] = False
+    else:
+        st.text("録音できたよ")
+
 
 if option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
