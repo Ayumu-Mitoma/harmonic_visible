@@ -84,7 +84,7 @@ if option == "今から音を録音する":
             "数値":peak_only
         })
         st.dataframe(df.T)
-        display_cqt_value(peak, peak_only)
+        display_cqt_value(peak, tone)
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
