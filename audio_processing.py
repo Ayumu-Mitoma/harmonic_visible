@@ -86,7 +86,7 @@ def peak_extraction(data, num=15):
     for i in range(len(data)):
         if peak[i] != 0:
             tone_peak.append(tone_all[i])
-            peak_index.append(peak[i])
+            peak_index.append(round(peak[i],2))
 
     return peak, tone_peak, peak_index
 
