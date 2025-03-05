@@ -20,12 +20,15 @@ ap.display_cqt_value(peak)
 st.title("倍音成分を見てみよう！")
 
 st.header("手順通りに進めてみよう")
-if st.button("今から音を録音する場合"):
+option = st.radio("下から次の操作を選んでね",
+                  ["今から音を録音する", "録音した音を選ぶ"])
+
+if option == "今から音を録音する":
     st.subheader("1. 音を録音しよう")
     st.text("ピアノの近くにスマホを置いて録音してみよう")
     audio_byte = audio_recorder()
 
-if st.button("録音した音を使用する場合"):
+if option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
     st.text("ボタンを押して録音した音声を選んでね")
 
