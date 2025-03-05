@@ -46,7 +46,7 @@ if option == "今から音を録音する":
         tuning = st.slider(label="チューニングを選択 ※0が規定値",
                            min_value=-1.0,
                            max_value=1.0,
-                           value=0.0
+                           value=0.0,
                            step=0.1,
                            format="%0.1f")
         ana = st.button("分析開始")
