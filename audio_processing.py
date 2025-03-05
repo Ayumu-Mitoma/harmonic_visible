@@ -62,13 +62,14 @@ def display_cqt_value(data):
     plt.bar(x, data)
     plt.show()
 
-def peak_extraction(data):
+def peak_extraction(data, num=15):
     if len(data) != 84:
         print("ERROR")
         exit()
 
     peak = np.zeros(84)
-    for i in range(15):
+    peak_index = []
+    for i in range(num):
         max_id = np.argmax(data)
         peak[max_id] = data[max_id]
     
@@ -85,8 +86,9 @@ def peak_extraction(data):
     for i in range(len(data)):
         if peak[i] != 0:
             tone_peak.append(tone_all[i])
+            peak_index.append(i)
 
-    return peak, tone_peak
+    return peak, tone_peak, peak_index
 
 def create_12_data(data):
     bins = int(C.BINS_PER_OCTAVE / 12)

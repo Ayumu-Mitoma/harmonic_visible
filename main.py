@@ -56,14 +56,14 @@ if option == "今から音を録音する":
             cqt = ap.create_CQT(noise_wav_io, tuning)
             row = ap.search_max_index(cqt)
             row_84 = ap.create_12_data_beta(row)
-            peak, tone = ap.peak_extraction(row_84)
+            peak, tone, index = ap.peak_extraction(row_84)
             st.session_state["result"] = True
     if st.session_state["result"] == True:
         df = pd.DataFrame({})
         st.text(len(tone))
         st.text(len(peak))
-        for i in range(len(peak)):
-            df[tone[i]] = peak[i]
+        for i in range(len(tone)):
+            df[tone[i]] = peak[index[i]]
         st.write(df)
 
 
