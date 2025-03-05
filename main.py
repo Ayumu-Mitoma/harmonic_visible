@@ -2,7 +2,7 @@ import const as C
 import audio_processing as ap
 import numpy as np
 import streamlit as st
-from audio_recorder_streamlit import st_audio_recorder
+from audio_recorder_streamlit import audio_recorder
 
 """
 wav_io = ap.m4a_to_wav(file)
@@ -26,8 +26,8 @@ st.text("ピアノの近くにスマホを置いて録音してみよう")
 st.subheader("2. 録音した音声を渡してね")
 st.text("ボタンを押して録音した音声を選んでね")
 
-audio = st_audio_recorder()
-
-if audio:
-    st.audio(audio, format="audio/wav")
-    st.write("録音された音声を再生できます")
+audio_byte = audio_recorder()
+if st.button("録音を保存"):
+    with open("recorder.wav", "wb") as f:
+        f.write(audio_byte)
+    st.success("録音が保存できました。")
