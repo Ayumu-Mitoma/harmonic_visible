@@ -59,13 +59,11 @@ if option == "今から音を録音する":
             peak, tone, index = ap.peak_extraction(row_84)
             st.session_state["result"] = True
     if st.session_state["result"] == True:
-        df = pd.DataFrame({})
-        st.text(len(tone))
-        st.text(len(peak))
-        for i in range(len(tone)):
-            df[peak[index[i]]] = tone[i]
-        st.write(df)
-
+        d = {tone[0]:peak[index[0]]}
+        for i in range(1,len(tone)):
+            d[tone[i]] = peak[index[i]]
+        st.text(d)
+        
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
