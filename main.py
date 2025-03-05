@@ -29,7 +29,7 @@ if option == "今から音を録音する":
     st.subheader("1. 音を録音しよう")
     st.text("ピアノの近くにスマホを置いて録音してみよう")
    
-
+    st.session_state["analysis"] = False
     audio_bytes = audio_recorder(
         energy_threshold=(100.0, -1.0),
         neutral_color="#4169e1",
