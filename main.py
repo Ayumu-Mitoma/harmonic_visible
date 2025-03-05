@@ -6,6 +6,7 @@ from audio_recorder_streamlit import audio_recorder
 from io import BytesIO
 import time
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 """
@@ -17,6 +18,10 @@ ap.display_cqt_value(row_84)
 peak = ap.peak_extraction(row_84)
 ap.display_cqt_value(peak)
 """
+def display_cqt_value(data):
+    x = range(0,len(data))
+    plt.bar(x, data)
+    st.pyplot()
 
 #UI部分記述
 st.title("倍音成分を見てみよう！")
@@ -64,6 +69,7 @@ if option == "今から音を録音する":
             "数値":peak_only
         })
         st.dataframe(df.T)
+        display_cqt_value(peak)
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
