@@ -84,30 +84,21 @@ def peak_extraction(data, num=15):
         if peak[i] != 0:
             tone_peak.append(tone_all[i])
             peak_index.append(round(peak[i],2))
-
     return peak, tone_peak, peak_index
-
-def create_12_data(data):
-    bins = int(C.BINS_PER_OCTAVE / 12)
-    data_84 = np.zeros(84)
-    for i in range(84):
-        for j in range(bins):
-            data_84[i] = data_84[i] + data[i*bins+j]
-
-    return data_84
 
 def create_12_data_beta(data):
     bins = int(C.BINS_PER_OCTAVE / 12)
-    data_a = np.zeros(len(data))
-    for i in range(10000):
-        p = np.argmax(data)
-        if p == len(data)-1:
-            p = p - 1
-        data_a[p] = data[p]+data[p-1]+data[p+1]
+    data_all = np.zeros([21,84])
+    for t in range(len(data):
+        for i in range(10000):
+            p = np.argmax(data[t])
+            if p == len(data_t)-1:
+                p = p - 1
+            data_a[t][p] = data[t][p]+data[t][p-1]+data[t][p+1]
 
-        data[p] = 0
-        data[p-1] = 0
-        data[p+1] = 0
+            data[t][p] = 0
+            data[t][p-1] = 0
+            data[t][p+1] = 0
 
         if np.max(data) ==0:
             break
