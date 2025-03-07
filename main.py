@@ -7,6 +7,7 @@ from io import BytesIO
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
+import audio_processing2 as ap2
 
 #toneの定義
 tone_en = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
@@ -64,11 +65,14 @@ if option == "今から音を録音する":
     if st.session_state["analysis"] == True:
         tone = st.selectbox("鳴らした音を選んでね",tone_ja)
         tone = tone_en[tone_ja.index(tone)]
-        st.text(tone)
         tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
             with st.spinner("処理中..."):
+                cqt_20 = ap2.create_CQT_20(noise_wav_io)
+                st.text(len(cqt_20))
+                st.text(cqt_20[0].shape)
+                exit()
                 cqt = ap.create_CQT(noise_wav_io, tuning)
                 row = ap.search_max_index(cqt)
                 row_84 = ap.create_12_data_beta(row)
