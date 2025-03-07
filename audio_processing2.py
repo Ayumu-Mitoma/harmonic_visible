@@ -113,4 +113,5 @@ def create_12_data_beta(data):
 def max_peak_tuning_row(data, tone):
     sample = C.tone
     tone_id = sample.index(tone)
-    print(tone_id)
+
+    return tone_id
