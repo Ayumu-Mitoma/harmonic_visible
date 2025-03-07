@@ -119,6 +119,6 @@ def max_peak_tuning_row(data, tone):
 
     peak_tone = np.zeros(21)
     for i in range(len(data)):
-        for j in raneg(7):
+        for j in range(7):
             peak_tone[i] = peak_tone[i] + data[i][index[j]]
     return peak_tone
