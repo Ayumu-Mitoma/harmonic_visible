@@ -63,8 +63,8 @@ if option == "今から音を録音する":
     #分析の開始
     if st.session_state["analysis"] == True:
         tone = st.selectbox("鳴らした音を選んでね",tone_ja)
-        st.text(tone_ja.index(tone))
-
+        tone = tone_en[tone_ja.index(tone)]
+        st.text(tone)
         tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
