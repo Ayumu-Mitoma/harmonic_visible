@@ -93,7 +93,7 @@ def create_12_data_beta(data):
     for t in range(len(data)):
         for i in range(10000):
             p = np.argmax(data[t])
-            if p == len(data_t)-1:
+            if p == len(data[t])-1:
                 p = p - 1
             data_a[t][p] = data[t][p]+data[t][p-1]+data[t][p+1]
 
