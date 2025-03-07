@@ -47,7 +47,7 @@ if option == "今から音を録音する":
         energy_threshold=(100.0, -1.0),
         neutral_color="#4169e1",
         text="ボタンを押して録音",
-        icon_size="2x"
+        icon_size="3x"
     )
     #録音後の処理
     if audio_bytes:
@@ -64,7 +64,8 @@ if option == "今から音を録音する":
             tone = st.selectbox("鳴らした音を選んでね",
                                 ["ド","レ", "ミ", "ファ", "ソ", "ラ", "シ"])
         with col2:
-            sharp = st.button("#")
+            st.text("#が付く場合はボタンを押してね")
+            sharp = st.checkbox("#")
         tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
