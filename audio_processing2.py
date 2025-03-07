@@ -113,5 +113,8 @@ def create_12_data_beta(data):
 def max_peak_tuning_row(data, tone):
     sample = C.tone
     tone_id = sample.index(tone)
-
-    return tone_id
+    index = np.zeros(7)
+    for i in range(7):
+        index[i] = 12 * i + tone_id
+        
+    return index
