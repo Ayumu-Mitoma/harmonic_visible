@@ -4,7 +4,6 @@ import noisereduce as nr
 import const as C
 import soundfile as sf
 import matplotlib.pyplot as plt
-from pydub import AudioSegment
 import io
 
 SR = C.SR
