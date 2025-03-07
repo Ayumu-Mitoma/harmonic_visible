@@ -8,6 +8,9 @@ import time
 import pandas as pd
 import matplotlib.pyplot as plt
 
+#toneの定義
+tone_en = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+tone_ja = ["ド", "ド#", "レ", "レ#", "ミ", "ファ", "ファ#", "ソ", "ソ#", "ラ", "ラ#", "シ"]
 
 def display_cqt_value(data, peak_tone):
     fig, ax = plt.subplots()
@@ -59,9 +62,9 @@ if option == "今から音を録音する":
 
     #分析の開始
     if st.session_state["analysis"] == True:
-        tone = st.selectbox("鳴らした音を選んでね",
-                            ["ド", "ド#", "レ", "レ#", "ミ", "ファ", 
-                             "ファ#", "ソ", "ソ#", "ラ", "ラ#", "シ"])
+        tone = st.selectbox("鳴らした音を選んでね",tone_ja)
+        st.text(tone_ja.index(tone))
+
         tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
