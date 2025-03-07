@@ -71,7 +71,8 @@ if option == "今から音を録音する":
             with st.spinner("処理中..."):
                 cqt_21 = ap2.create_CQT_20(noise_wav_io)
                 row_84 = ap2.create_12_data_beta(cqt_21)
-                ap2.max_peak_tuning_row(row_84, tone)
+                result = ap2.max_peak_tuning_row(row_84, tone)
+                st.text(result)
                 exit()
                 peak, tone, peak_only = ap.peak_extraction(row_84)
                 st.session_state["result"] = True
