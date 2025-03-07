@@ -65,7 +65,7 @@ if option == "今から音を録音する":
                                 ["ド","レ", "ミ", "ファ", "ソ", "ラ", "シ"])
         with col2:
             st.text("#が付く場合はボタンを押してね")
-            sharp = st.checkbox("#")
+            sharp = st.checkbox("＃")
         tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
