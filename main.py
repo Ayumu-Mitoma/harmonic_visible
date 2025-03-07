@@ -69,13 +69,10 @@ if option == "今から音を録音する":
         ana = st.button("分析開始")
         if ana == True:
             with st.spinner("処理中..."):
-                cqt_20 = ap2.create_CQT_20(noise_wav_io)
-                st.text(len(cqt_20))
-                st.text(cqt_20[0].shape)
+                cqt_21 = ap2.create_CQT_20(noise_wav_io)
+                row_84 = ap.create_12_data_beta(cqt_21)
+                st.text(row84.shape)
                 exit()
-                cqt = ap.create_CQT(noise_wav_io, tuning)
-                row = ap.search_max_index(cqt)
-                row_84 = ap.create_12_data_beta(row)
                 peak, tone, peak_only = ap.peak_extraction(row_84)
                 st.session_state["result"] = True
     if st.session_state["result"] == True:
