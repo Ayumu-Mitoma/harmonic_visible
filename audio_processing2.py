@@ -88,7 +88,7 @@ def peak_extraction(data, num=15):
 
 def create_12_data_beta(data):
     bins = int(C.BINS_PER_OCTAVE / 12)
-    data_all = np.zeros([21, len(data[0])])
+    data_a = np.zeros([21, len(data[0])])
     data_84 = np.zeros([21,84])    
     for t in range(len(data)):
         for i in range(10000):
