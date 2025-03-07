@@ -32,32 +32,40 @@ st.text("")
 choice = ["今から音を録音する", "録音した音を選ぶ"]
 option = st.sidebar.selectbox("次の操作を選んでね",choice)
 
-
+#録音する際の処理部分
 if option == "今から音を録音する":
     #音を録音する際の処理
     st.subheader("1. 音を録音しよう")
     st.text("ピアノの近くにスマホを置いて録音してみよう")
    
+    #セッション状態の管理
     st.session_state["analysis"] = False
     st.session_state["result"] = False
+    
+    #録音部分
     audio_bytes = audio_recorder(
         energy_threshold=(100.0, -1.0),
         neutral_color="#4169e1",
         text="ボタンを押して録音",
         icon_size="2x"
     )
+    #録音後の処理
     if audio_bytes:
         with BytesIO(audio_bytes)as f:
             data = ap.byte_to_audio(f)
-        st.session_state["analysis"] = True
-    if st.session_state["analysis"] == True:
         noise_wav_io = ap.noise_reducer(data, num = 0.8)
-        tuning = st.slider(label="チューニングを選択 ※0が規定値",
-                           min_value=-1.0,
-                           max_value=1.0,
-                           value=0.0,
-                           step=0.1,
-                           format="%0.1f")
+
+        st.session_state["analysis"] = True
+
+    #分析の開始
+    if st.session_state["analysis"] == True:
+        col1, col2 = st.columns(2)
+        with col1:
+            tone = st.selectbox("鳴らした音を選んでね",
+                                ["ド","レ", "ミ", "ファ", "ソ", "ラ", "シ"])
+        with col2:
+            sharp = st.button("#")
+        tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
             with st.spinner("処理中..."):
