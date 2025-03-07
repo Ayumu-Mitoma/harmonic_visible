@@ -59,13 +59,9 @@ if option == "今から音を録音する":
 
     #分析の開始
     if st.session_state["analysis"] == True:
-        col1, col2 = st.columns(2)
-        with col1:
-            tone = st.selectbox("鳴らした音を選んでね",
-                                ["ド","レ", "ミ", "ファ", "ソ", "ラ", "シ"])
-        with col2:
-            st.text("#が付く場合はボタンを押してね")
-            sharp = st.checkbox("＃")
+        tone = st.selectbox("鳴らした音を選んでね",
+                            ["ド", "ド#", "レ", "レ#", "ミ", "ファ", 
+                             "ファ#", "ソ", "ソ#", "ラ", "ラ#", "シ"])
         tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
