@@ -3,8 +3,7 @@ NUM_OCTAVE = 7
 SR = 44100
 HOP_LENGTH = 1024
 
-AUDIO_PATH = r"./data/audio/"
-SAVE_PATH = r"./data/save/"
+sample_path = r"./Cmaj.wav"
 
 tone = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
