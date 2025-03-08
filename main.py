@@ -112,7 +112,7 @@ elif option == "録音した音を選ぶ":
                 row_84 = ap2.create_12_data_beta(cqt_21)
                 peak_row = ap2.max_peak_tuning_row(row_84, tone)
                 peak, tone, peak_only = ap.peak_extraction(peak_row)
-                st.session_state["result"] = True
+                st.session_state["result2"] = True
     if st.session_state["result2"] == True:
         df = pd.DataFrame({
             "音階":tone,
