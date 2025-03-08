@@ -13,7 +13,7 @@ import audio_processing2 as ap2
 tone_en = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 tone_ja = ["ド", "ド#", "レ", "レ#", "ミ", "ファ", "ファ#", "ソ", "ソ#", "ラ", "ラ#", "シ"]
 
-def display_cqt_value(data, peak_tone):
+def display_cqt_value(data, peak_tone, tone):
     fig, ax = plt.subplots()
     x = range(0,len(data))
     index = []
@@ -21,11 +21,15 @@ def display_cqt_value(data, peak_tone):
     for i in range(len(data)):
         if data[i] != 0:
             index.append(i)
-    ax.bar(x, data)
-    ax.set_xlabel("Overtone")
-    ax.set_ylabel("Amplitude")
+    
+    rect = ax.bar(x, data)
+    ax.set_xlabel("強くなっている音一覧")
+    ax.set_ylabel("音の強さ")
     ax.set_xticks(index)
     ax.set_xticklabels(peak_tone)
+    for i in range(len(peak_tone)):
+        if tone in peak_tone[i]:
+            rect[i].setcolor('yellow')    
     ax.set_yticks([])
     st.pyplot(fig)
 
@@ -72,15 +76,15 @@ if option == "今から音を録音する":
                 cqt_21 = ap2.create_CQT_20(noise_wav_io)
                 row_84 = ap2.create_12_data_beta(cqt_21)
                 peak_row = ap2.max_peak_tuning_row(row_84, tone)
-                peak, tone, peak_only = ap.peak_extraction(peak_row)
+                peak, tone_peak, peak_only = ap.peak_extraction(peak_row)
                 st.session_state["result"] = True
     if st.session_state["result"] == True:
         df = pd.DataFrame({
-            "音階":tone,
+            "音階":tone_peak,
             "数値":peak_only
         })
         st.dataframe(df.T)
-        display_cqt_value(peak_only, tone)
+        display_cqt_value(peak_only, tone_peak, tone)
 
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
@@ -111,12 +115,12 @@ elif option == "録音した音を選ぶ":
                 cqt_21 = ap2.create_CQT_20(noise_wav_io)
                 row_84 = ap2.create_12_data_beta(cqt_21)
                 peak_row = ap2.max_peak_tuning_row(row_84, tone)
-                peak, tone, peak_only = ap.peak_extraction(peak_row)
+                peak, tone_peak, peak_only = ap.peak_extraction(peak_row)
                 st.session_state["result2"] = True
     if st.session_state["result2"] == True:
         df = pd.DataFrame({
-            "音階":tone,
+            "音階":tone_peak,
             "数値":peak_only
         })
         st.dataframe(df.T)
-        display_cqt_value(peak_only, tone)
+        display_cqt_value(peak_only, tone_peak, tone)
