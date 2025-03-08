@@ -96,26 +96,23 @@ elif option == "録音した音を選ぶ":
         if file_name.endswith(".wav") or file_name.endswith(".mp3"):
             data = ap.byte_to_audio(file)
             st.session_state["analysis2"] = True
+            noise_wav_io = ap.noise_reducer(data, num = 0.8)
         else:
             st.error("対応しているファイルはwavまたはmp3だけです")
             st.stop()
 
     if st.session_state["analysis2"] == True:
-        noise_wav_io = ap.noise_reducer(data, num = 0.8)
-        tuning = st.slider(label="チューニングを選択 ※0が規定値",
-                           min_value=-1.0,
-                           max_value=1.0,
-                           value=0.0,
-                           step=0.1,
-                           format="%0.1f")
+        tone = st.selectbox("鳴らした音を選んでね",tone_ja)
+        tone = tone_en[tone_ja.index(tone)]
+        tuning = 0.0
         ana = st.button("分析開始")
         if ana == True:
             with st.spinner("処理中..."):
-                cqt = ap.create_CQT(noise_wav_io, tuning)
-                row = ap.search_max_index(cqt)
-                row_84 = ap.create_12_data_beta(row)
-                peak, tone, peak_only = ap.peak_extraction(row_84)
-                st.session_state["result2"] = True
+                cqt_21 = ap2.create_CQT_20(noise_wav_io)
+                row_84 = ap2.create_12_data_beta(cqt_21)
+                peak_row = ap2.max_peak_tuning_row(row_84, tone)
+                peak, tone, peak_only = ap.peak_extraction(peak_row)
+                st.session_state["result"] = True
     if st.session_state["result2"] == True:
         df = pd.DataFrame({
             "音階":tone,
