@@ -29,7 +29,7 @@ def display_cqt_value(data, peak_tone, tone):
     ax.set_xticklabels(peak_tone)
     for i in range(len(peak_tone)):
         if tone in peak_tone[i]:
-            rect[i].setcolor('yellow')    
+            rect[i].set_color('yellow')    
     ax.set_yticks([])
     st.pyplot(fig)
 
