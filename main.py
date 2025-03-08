@@ -23,8 +23,8 @@ def display_cqt_value(data, peak_tone, tone):
             index.append(i)
     
     rect = ax.bar(x, data)
-    ax.set_xlabel("強くなっている音一覧")
-    ax.set_ylabel("音の強さ")
+    ax.set_xlabel("overtone")
+    ax.set_ylabel("amplitude")
     ax.set_xticks(index)
     ax.set_xticklabels(peak_tone)
     for i in range(len(peak_tone)):
@@ -85,7 +85,14 @@ if option == "今から音を録音する":
         })
         st.dataframe(df.T)
         display_cqt_value(peak_only, tone_peak, tone)
-
+        st.text("横軸：強く鳴っている音階の名前")
+        st.text("縦軸：音の強さ")
+        st.text("音階の対応表")
+        df_tone = pd.DataFrame({
+            "英語"：tone_en,
+            "日本語"：tone_ja
+        })
+        
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
     st.text("ボタンを押して録音した音声を選んでね")
@@ -124,3 +131,10 @@ elif option == "録音した音を選ぶ":
         })
         st.dataframe(df.T)
         display_cqt_value(peak_only, tone_peak, tone)
+        st.text("横軸：強く鳴っている音階の名前")
+        st.text("縦軸：音の強さ")
+        st.text("音階の対応表")
+        df_tone = pd.DataFrame({
+            "英語"：tone_en,
+            "日本語"：tone_ja
+        })
