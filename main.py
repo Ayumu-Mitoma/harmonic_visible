@@ -92,6 +92,7 @@ if option == "今から音を録音する":
             "英語":tone_en,
             "日本語":tone_ja
         })
+        st.dataframe(df_tone.T)
         
 elif option == "録音した音を選ぶ":
     st.subheader("1. 録音した音声を渡してね")
@@ -138,3 +139,4 @@ elif option == "録音した音を選ぶ":
             "英語":tone_en,
             "日本語":tone_ja
         })
+        st.dataframe(df_tone.T)
