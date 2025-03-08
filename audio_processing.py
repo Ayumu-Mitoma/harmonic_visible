@@ -7,8 +7,7 @@ import matplotlib.pyplot as plt
 import io
 
 SR = C.SR
-A_path = C.AUDIO_PATH
-S_path = C.SAVE_PATH
+
 
 def byte_to_audio(data):
     y, sr = librosa.load(data, sr=C.SR)
