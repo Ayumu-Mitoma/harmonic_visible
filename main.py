@@ -89,8 +89,8 @@ if option == "今から音を録音する":
         st.text("縦軸：音の強さ")
         st.text("音階の対応表")
         df_tone = pd.DataFrame({
-            "英語"：tone_en,
-            "日本語"：tone_ja
+            "英語":tone_en,
+            "日本語":tone_ja
         })
         
 elif option == "録音した音を選ぶ":
@@ -135,6 +135,6 @@ elif option == "録音した音を選ぶ":
         st.text("縦軸：音の強さ")
         st.text("音階の対応表")
         df_tone = pd.DataFrame({
-            "英語"：tone_en,
-            "日本語"：tone_ja
+            "英語":tone_en,
+            "日本語":tone_ja
         })
