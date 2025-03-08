@@ -39,7 +39,7 @@ def create_CQT_20(noise_data):
         MAX = len(M)-1
         flat_index = np.argmax(M)
         row_index, col_index = np.unravel_index(flat_index, M.shape)
-        sec = int(C.SR / C.HOP_LENGTH) * 2
+        sec = int(C.SR / C.HOP_LENGTH)
         if row_index+sec < MAX:
             max_row_after_1sec = M[row_index+sec, :]
         else:
