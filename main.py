@@ -32,7 +32,9 @@ def display_cqt_value(data, peak_tone, tone):
                 rect[i].set_color('yellow')
         else:
             if tone in peak_tone[i]:
-                if "#" in peak_tone[i] != True:
+                if "#" in peak_tone[i]:
+                    pass
+                else:
                     rect[i].set_color('yellow')
     ax.set_yticks([])
     st.pyplot(fig)
