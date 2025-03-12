@@ -3,8 +3,6 @@ NUM_OCTAVE = 7
 SR = 44100
 HOP_LENGTH = 1024
 
-sample_path = r"./Cmaj.wav"
-
 tone = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
 LOW_TUNING = -0.7
